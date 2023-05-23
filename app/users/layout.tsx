@@ -1,14 +1,20 @@
+import getUser from '../action/getUsers';
 import Sidebar from '../components/sidebar/Sidebar';
+import UserList from './components/UserList';
 
 export default async function UsersLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const users = await getUser();
   return (
     //@ts-expect-error Server Component
     <Sidebar>
-      <div className=" h-screen">{children}</div>
+      <div className=" h-screen">
+        <UserList items={users} />
+        {children}
+      </div>
     </Sidebar>
   );
 }
