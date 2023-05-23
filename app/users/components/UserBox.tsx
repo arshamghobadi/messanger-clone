@@ -16,7 +16,7 @@ const UserBox: React.FC<UserBoxProps> = ({ data }) => {
     setIsLoading(true);
 
     axios
-      .post('/api/conversation', {
+      .post('/api/conversations', {
         userId: data.id,
       })
       .then((data) => {
@@ -27,6 +27,7 @@ const UserBox: React.FC<UserBoxProps> = ({ data }) => {
 
   return (
     <div
+      onClick={handleClick}
       className=" w-full relative flex items-center space-x-3 bg-white p-3 hover:bg-neutral-100
      rounded-lg transition cursor-pointer
     "
@@ -38,7 +39,9 @@ const UserBox: React.FC<UserBoxProps> = ({ data }) => {
             className="
             flex justify-between items-center mb-1"
           >
-            <p className="text-sm font-medium text-gray-900">{data.name}</p>
+            <p className="text-sm font-medium text-gray-900 select-none">
+              {data.name}
+            </p>
           </div>
         </div>
       </div>
